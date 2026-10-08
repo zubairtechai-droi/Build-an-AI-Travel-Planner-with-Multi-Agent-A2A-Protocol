@@ -1,25 +1,26 @@
-"""CLI for running the AI Travel Planner."""
+"""Defines the AI Travel Planner agents."""
 
-# Async program execution
-import asyncio
+# Gemini API client
+from google.genai import Client
 
-# Gemini message types
+# ADK local agent
+from google.adk.agents.llm_agent import Agent
+
+# Remote agent and standard A2A Agent Card path
+from google.adk.agents.remote_a2a_agent import (
+    AGENT_CARD_WELL_KNOWN_PATH,
+    RemoteA2aAgent,
+)
+
+# Example tool for agents
+from google.adk.tools.example_tool import ExampleTool
+
+# Gemini message/content types
 from google.genai import types
 
-# Executes ADK agents
-from google.adk.runners import Runner
+# Environment variables and JSON data
+import os
+import json
 
-# Stores sessions in memory
-from google.adk.sessions.in_memory_session_service import InMemorySessionService
-
-# Stores artifacts in memory
-from google.adk.artifacts.in_memory_artifact_service import InMemoryArtifactService
-
-# Manages credentials in memory
-from google.adk.auth.credential_service.in_memory_credential_service import InMemoryCredentialService
-
-# Defines the ADK application
-from google.adk.apps.app import App
-
-# Main travel-planning agent
-from agent import root_agent
+# Optional type hints
+from typing import Optional
